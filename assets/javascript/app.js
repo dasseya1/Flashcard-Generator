@@ -1,3 +1,18 @@
+$(document).ready(function() {
+  $("#gamechoice1").click(function () {
+    $(this).hide();
+    $(".maintitle").hide();
+    $("#choice").hide();
+    $("#gamechoice2").hide();
+
+});
+
+$("#gamechoice2").click(function () {
+  $(this).hide();
+  $(".maintitle").hide();
+  $("#choice").hide();
+  $("#gamechoice1").hide();
+});
 
 //Constructor for basic flashcards
 var BasicCard = function ( front, back ) {
@@ -35,19 +50,23 @@ var firstPresident = new BasicCard(
 
 //Using these console.logs to test the backend app
 // "Who was the first president of the United States?"
-console.log(firstPresident.front); 
+console.log(firstPresident.front);
 
 // "George Washington"
-console.log(firstPresident.back); 
+console.log(firstPresident.back);
 
 var firstPresidentCloze = new ClozeCard(
     "first president of the United States.", "George Washington");
 
 // "George Washington"
-console.log(firstPresidentCloze.cloze); 
+console.log(firstPresidentCloze.cloze);
 
 // " ... was the first president of the United States.
-console.log(firstPresidentCloze.partial()); 
+console.log(firstPresidentCloze.partial());
 
 // "George Washington was the first president of the United States.
 console.log(firstPresidentCloze.fullText());
+
+
+
+});
