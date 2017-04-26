@@ -1,6 +1,5 @@
 // These are the variables
 var inquirer = require("inquirer");
-var fs = require("fs");
 var basicGameArr = [];
 
 //Constructor for basic flashcards
