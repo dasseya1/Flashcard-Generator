@@ -1,7 +1,7 @@
 // These are the variables
 var inquirer = require("inquirer");
 var clozeGameArr = [];
-
+var self = this;
 
 //Constructor for Cloze-Deleted flashcards
  var ClozeCard = function ( text, cloze ) {
@@ -31,7 +31,7 @@ clozeGameArr.push(new ClozeCard("George Washington was the first President of th
 var count = 0;
 
 // Ask the questions as long as the count is less than the number of questions
-var cardQuestion = function() {
+self.clozeCardQuestion = function() {
 	if (count < clozeGameArr.length){
         //Display the questions one by one on the console
         inquirer.prompt([{
@@ -46,13 +46,13 @@ var cardQuestion = function() {
                 console.log(clozeGameArr[count].text);
                 count++;
                 //Ask the follwing question
-                cardQuestion();
+                self.clozeCardQuestion();
             } else {
                 console.log("Ooops! " + useranswer + " is an incorrect answer.");
                 console.log("The correct answer is: " + backOfCard);
                 console.log(clozeGameArr[count].text);
                 count++;
-                cardQuestion();
+                self.clozeCardQuestion();
             }
 
         });
@@ -63,4 +63,4 @@ var cardQuestion = function() {
 };
 
 // Call the function in order to begin the game
-cardQuestion();
+//clozeCardQuestion();

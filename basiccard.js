@@ -1,6 +1,7 @@
 // These are the variables
 var inquirer = require("inquirer");
 var basicGameArr = [];
+var self = this;
 
 //Constructor for basic flashcards
 function BasicCard(front, back) {
@@ -18,12 +19,11 @@ basicGameArr.push(new BasicCard("Who was the first President of the United State
 var count = 0;
 
 // Ask the questions as long as the count is less than the number of questions
-var cardQuestion = function() {
+self.basicCardQuestion = function() {
 	if (count < basicGameArr.length){
         //Display the questions one by one on the console
         inquirer.prompt([{
             name: "question",
-            //		type: 'input',
             message: basicGameArr[count].front
         }]).then(function(answer) {
             var useranswer = answer.question;
@@ -33,11 +33,11 @@ var cardQuestion = function() {
                 console.log("Great! " + useranswer + " is correct!");
                 count++;
                 //Ask the follwing question
-                cardQuestion();
+                self.basicCardQuestion();
             } else {
                 console.log("Ooops! " + basicGameArr[count].back + " is the correct answer.");
                 count++;
-                cardQuestion();
+                self.basicCardQuestion();
             }
 
         });
@@ -48,4 +48,4 @@ var cardQuestion = function() {
 };
 
 // Call the function in order to begin the game
-cardQuestion();
+//basicCardQuestion();
