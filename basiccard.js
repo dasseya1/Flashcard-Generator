@@ -20,7 +20,7 @@ var count = 0;
 
 // Ask the questions as long as the count is less than the number of questions
 self.basicCardQuestion = function() {
-	if (count < basicGameArr.length){
+    if (count < basicGameArr.length) {
         //Display the questions one by one on the console
         inquirer.prompt([{
             name: "question",
@@ -43,9 +43,7 @@ self.basicCardQuestion = function() {
         });
 
     } else {
-    	console.log("End of the Game!");
-    } 
+        console.log("End of the Game!");
+    }
 };
 
-// Call the function in order to begin the game
-//basicCardQuestion();

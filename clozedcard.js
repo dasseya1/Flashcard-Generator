@@ -4,21 +4,21 @@ var clozeGameArr = [];
 var self = this;
 
 //Constructor for Cloze-Deleted flashcards
- var ClozeCard = function ( text, cloze ) {
- 	this.text = text;
- 	this.cloze = cloze;
- }
- 
- //This method returns the partial text.
- ClozeCard.prototype.partial = function() {
- 
- 	if(this.text.indexOf(this.cloze) === 0) {
- 	return this.text.replace(this.cloze, '...');
- } else {
- 	var notExist = " doesn\'t exist in ";
- 	return "'" + this.cloze + "'" + notExist + "'" + this.text + "'";
- 
- 	}
+var ClozeCard = function(text, cloze) {
+    this.text = text;
+    this.cloze = cloze;
+}
+
+//This method returns the partial text.
+ClozeCard.prototype.partial = function() {
+
+    if (this.text.indexOf(this.cloze) === 0) {
+        return this.text.replace(this.cloze, '...');
+    } else {
+        var notExist = " doesn\'t exist in ";
+        return "'" + this.cloze + "'" + notExist + "'" + this.text + "'";
+
+    }
 };
 
 //Questions and Answers to push into the array variable
@@ -32,7 +32,7 @@ var count = 0;
 
 // Ask the questions as long as the count is less than the number of questions
 self.clozeCardQuestion = function() {
-	if (count < clozeGameArr.length){
+    if (count < clozeGameArr.length) {
         //Display the questions one by one on the console
         inquirer.prompt([{
             name: "question",
@@ -58,9 +58,6 @@ self.clozeCardQuestion = function() {
         });
 
     } else {
-    	console.log("End of the Game!");
-    } 
+        console.log("End of the Game!");
+    }
 };
-
-// Call the function in order to begin the game
-//clozeCardQuestion();
