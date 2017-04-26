@@ -1,53 +1,52 @@
+// These are the variables
+var inquirer = require("inquirer");
+var fs = require("fs");
+var basicGameArr = [];
 
 //Constructor for basic flashcards
-var BasicCard = function ( front, back ) {
- this.front = front;
- this.back = back;
-}
+function BasicCard(front, back) {
+    this.front = front;
+    this.back = back;
+};
 
-//Constructor for Cloze-Deleted flashcards
-var ClozeCard = function ( text, cloze ) {
-	this.text = text;
-	this.cloze = cloze;
-}
+//Questions and Answers to push into the array variable
 
-//This method returns the partial text.
-ClozeCard.prototype.partial = function() {
-
-	if(this.text.indexOf(this.cloze) === true) {
-	return this.text.replace(this.cloze, '...');
-} else {
-	var notExist = " doesn\'t exist in ";
-	return "'" + this.cloze + "'" + notExist + "'" + this.text + "'";
-
-	}
-}
-
-//This method returns the full text.
-ClozeCard.prototype.fullText = function() {
-	return this.text;
-}
+basicGameArr.push(new BasicCard("Who was the first President of the United States?", "George Washington"),
+    new BasicCard("What is the firstname of the last President of the United States?", "Barack"),
+    new BasicCard("Who was the best player of the NBA in 2016?", "James LeBron"));
 
 
+var count = 0;
 
-var firstPresident = new BasicCard(
-    "Who was the first president of the United States?", "George Washington");
+// Ask the questions as long as the count is less than the number of questions
+var cardQuestion = function() {
+	if (count < basicGameArr.length){
+        //Display the questions one by one on the console
+        inquirer.prompt([{
+            name: "question",
+            //		type: 'input',
+            message: basicGameArr[count].front
+        }]).then(function(answer) {
+            var useranswer = answer.question;
+            var backOfCard = basicGameArr[count].back;
 
-//Using these console.logs to test the backend app
-// "Who was the first president of the United States?"
-console.log(firstPresident.front); 
+            if ((useranswer === backOfCard) || (useranswer === backOfCard.toLowerCase()) || (useranswer === backOfCard.toUpperCase())) {
+                console.log("Great! " + useranswer + " is correct!");
+                count++;
+                //Ask the follwing question
+                cardQuestion();
+            } else {
+                console.log("Ooops! " + basicGameArr[count].back + " is the correct answer.");
+                count++;
+                cardQuestion();
+            }
 
-// "George Washington"
-console.log(firstPresident.back); 
+        });
 
-var firstPresidentCloze = new ClozeCard(
-    "first president of the United States.", "George Washington");
+    } else {
+    	console.log("End of the Game!");
+    } 
+};
 
-// "George Washington"
-console.log(firstPresidentCloze.cloze); 
-
-// " ... was the first president of the United States.
-console.log(firstPresidentCloze.partial()); 
-
-// "George Washington was the first president of the United States.
-console.log(firstPresidentCloze.fullText());
+// Call the function in order to begin the game
+cardQuestion();
