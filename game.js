@@ -3,7 +3,7 @@ var cloze = require("./clozedcard.js");
 var inquirer = require('inquirer');
 
 inquirer.prompt([{
-    type: 'rawlist',
+    type: 'list',
     name: 'choice',
     message: 'Choose one of the flashcard games',
     choices: [
